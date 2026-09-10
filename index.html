@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Victoria Tuck — Multi-Agent Systems Researcher</title>
+<meta name="description" content="Postdoctoral researcher designing algorithms for multi-agent systems with theoretical guarantees." />
+
+<!-- === EDIT: replace the URL below with your live site once deployed === -->
+<meta property="og:title" content="Victoria Tuck" />
+<meta property="og:description" content="Multi-agent systems researcher." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --paper:      #fbfbf9;
+    --ink:        #101d2e;
+    --ink-soft:   #43536a;
+    --ink-faint:  #7d8a9c;
+    --accent:     #1a5a86;   /* instrument blue */
+    --accent-dk:  #103d5c;
+    --rule:       #e3e6ea;
+    --rule-soft:  #eef0f2;
+    --maxw:       760px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 18px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-dk); text-decoration: underline; text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* --- shared type devices --- */
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 18px 0;
+  }
+  .mono { font-family: "IBM Plex Mono", monospace; }
+  h1, h2, h3 { font-family: "Space Grotesk", sans-serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  /* --- sticky section nav --- */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    backdrop-filter: saturate(1.3) blur(9px);
+    -webkit-backdrop-filter: saturate(1.3) blur(9px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    height: 52px;
+  }
+  .nav-name {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .nav-name:hover { color: var(--ink); text-decoration: none; }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    padding: 4px 0;
+  }
+  .nav-links a:hover { color: var(--accent); text-decoration: none; }
+  @media (max-width: 560px) {
+    .nav-name { display: none; }
+    .nav-inner { justify-content: flex-start; }
+  }
+
+  /* --- header / hero --- */
+  header {
+    padding: 72px 0 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .name {
+    font-size: clamp(38px, 8vw, 60px);
+    line-height: 1.02;
+    margin: 0 0 12px;
+    letter-spacing: -0.025em;
+  }
+  .role {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    margin: 0 0 34px;
+  }
+  .role span { color: var(--accent); }
+
+  /* --- hero layout with photo --- */
+  .hero { display: flex; gap: 40px; align-items: flex-start; }
+  .hero-text { flex: 1 1 auto; min-width: 0; }
+  .hero-photo { flex: 0 0 auto; width: 168px; }
+  .hero-photo img {
+    width: 168px;
+    height: 208px;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    display: block;
+    background: var(--rule-soft);
+  }
+  .hero-photo .cap {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+    margin-top: 8px;
+    text-align: center;
+  }
+  @media (max-width: 640px) {
+    .hero { flex-direction: column-reverse; align-items: flex-start; gap: 26px; }
+    .hero-photo { width: 132px; }
+    .hero-photo img { width: 132px; height: 164px; }
+    .hero-photo .cap { text-align: left; }
+  }
+
+  /* .thesis {
+    font-size: clamp(21px, 3.4vw, 26px);
+    line-height: 1.42;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 36px;
+    max-width: 40ch;
+  }
+  .thesis b { font-weight: 600; } */
+  .thesis {
+    font-size: clamp(17px, 1.4vw, 19px);
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--ink);
+    margin: 0 0 36px;
+    max-width: 62ch;
+  }
+  .thesis strong { font-weight: 600; }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13.5px;
+    letter-spacing: 0.02em;
+  }
+
+  /* --- sections --- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 64px; }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; margin: 0 0 26px; font-family: "IBM Plex Mono", monospace; }
+
+  p { margin: 0 0 18px; }
+  .lead { color: var(--ink); }
+  .muted { color: var(--ink-soft); }
+
+  /* --- research triptych (the signature) --- */
+  .modes { display: grid; gap: 2px; background: var(--rule); border: 1px solid var(--rule); }
+  .mode {
+    background: var(--paper);
+    padding: 26px 24px;
+  }
+  .mode .idx {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+  }
+  .mode .arc {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin: 10px 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .mode .arc em { font-style: normal; color: var(--ink-faint); font-weight: 500; }
+  .mode p { font-size: 16px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+  .frontier {
+    margin-top: 22px;
+    font-size: 16px;
+    color: var(--ink-soft);
+  }
+  .frontier b { color: var(--ink); font-weight: 600; }
+
+  /* --- news --- */
+  .news-item {
+    display: flex;
+    gap: 20px;
+    padding: 14px 0;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 16px;
+  }
+  .news-item:first-child { border-top: none; }
+  .news-item .date {
+    flex: 0 0 92px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    padding-top: 2px;
+  }
+  .news-item .body { color: var(--ink-soft); }
+  .news-item .body b { color: var(--ink); font-weight: 600; }
+  @media (max-width: 560px) {
+    .news-item { flex-direction: column; gap: 3px; }
+    .news-item .date { flex-basis: auto; }
+  }
+
+  /* --- publications --- */
+  .pub { padding: 18px 0; border-top: 1px solid var(--rule-soft); }
+  .pub:first-child { border-top: none; }
+  .pub .t { font-family: "Space Grotesk", sans-serif; font-weight: 600; font-size: 17.5px; color: var(--ink); margin: 0 0 5px; letter-spacing: -0.005em; }
+  .pub .m { font-size: 14px; color: var(--ink-soft); font-family: "IBM Plex Mono", monospace; letter-spacing: 0.01em; }
+  .pub .m .venue { color: var(--accent); }
+  .pub .tag {
+    display: inline-block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-left: 4px;
+    vertical-align: 1px;
+  }
+  .note {
+    font-size: 14px;
+    color: var(--ink-faint);
+    font-style: italic;
+    margin-top: 22px;
+  }
+
+  footer { padding: 40px 0 64px; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--ink-faint); letter-spacing: 0.02em; }
+
+  /* --- entrance --- */
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal { opacity: 0; transform: translateY(8px); animation: rise 0.6s ease forwards; }
+    .reveal:nth-child(2) { animation-delay: 0.06s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    header { padding-top: 52px; }
+    section { padding: 44px 0; }
+  }
+
+  .rows { display: flex; flex-direction: column; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .row:last-child { border-bottom: none; }
+  .role { flex: 1 1 auto; }
+  .role b { font-weight: 600; }
+  .yr {
+    flex: 0 0 auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .row { flex-direction: column; gap: 2px; padding: 8px 0; }
+    .yr { font-size: 11px; }
+  }
+
+  .course { margin: 0 0 14px; }
+  .chead {
+    margin: 0 0 3px;
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  .chead b { font-weight: 600; }
+  .prow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 2px 0 2px 1.6em;
+  }
+  .pos { flex: 1 1 auto; color: var(--ink); }
+  .yr {
+    flex: 0 0 auto;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  @media (max-width: 560px) {
+    .prow { padding-left: 1em; gap: 10px; }
+    .yr { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Sections">
+  <div class="wrap nav-inner">
+    <!-- EDIT: your short name / initials -->
+    <a href="#top" class="nav-name">V. Tuck</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <!-- <a href="#research">Research</a> -->
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#teaching">Teaching</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+  <header>
+    <div class="hero">
+      <div class="hero-text">
+        <!-- <p class="eyebrow reveal">Multi-agent systems · guarantees · airspace</p> -->
+        <!-- EDIT your name -->
+        <h1 class="name reveal">Victoria Tuck</h1>
+        <!-- EDIT title + institution -->
+        <p class="role">Multi-Agent Systems · <span>Postdoctoral Researcher</span> · <span>University of Pennsylvania</span></p>
+
+        <p class="thesis">
+          As autonomous systems move from single agents in controlled settings 
+          into critical infrastructure, dependable operation under uncertainty 
+          and competing incentives becomes both essential and difficult. 
+          <strong>My research develops algorithmic frameworks with theoretical guarantees 
+          for multi-agent cyber-physical systems</strong> in these settings. Specifically, I design for 
+          <strong>safety under uncertainty</strong>; <strong>efficient, sustained coordination</strong>; 
+          and <strong>social alignment among self-interested agents</strong>,. Applications of my work include 
+          next-generation air mobility and multi-robot systems. More broadly, my 
+          long-term vision is to make the design of large-scale multi-agent systems 
+          as principled and routine as modern software engineering.
+        </p>
+        <p class="job-market">I am on the 2026-2027 faculty job market.</p>
+
+        <nav class="links" aria-label="Profiles and contact">
+          <!-- EDIT every link below -->
+          <a href="mailto:vtuck@engineering.upenn.edu">Email</a>
+          <a href="cv.pdf">CV</a>
+          <a href="https://scholar.google.com/citations?user=NhuHUDcAAAAJ">Scholar</a>
+          <a href="https://github.com/victoria-tuck">GitHub</a>
+        </nav>
+      </div>
+
+      <div class="hero-photo">
+        <!-- EDIT: drop a headshot named photo.jpg in the repo root (portrait, ~600x740px looks best) -->
+        <img src="photo.png" alt="Victoria Tuck" />
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About</h2>
+    <p class="lead">
+      I am currently a Postdoc at the University of Pennsylvania advised by George Pappas.
+      Previously, I completed my Ph.D. at UC Berkeley in Electrical Engineering 
+      and Computer Sciences advised by Shankar Sastry 
+      and Sanjit Seshia. Before and during my Ph.D., I interned with Zipline, Toyota, and Sandia National Labs.
+      I received my B.S. and M.S. from Georgia Tech (Go Jackets!).
+      My teaching efforts have been recognized with both the Berkeley EECS department and
+      campus Outstanding Student Instructor awards. 
+      As an advocate for increased diversity in engineering, I have partnered with groups such as 
+      Community Resources for Science and the Girl Scouts on efforts to improve 
+      science education in schools and promote girls and women in STEM. In my personal time, I enjoy 
+      singing with the Mendelssohn Chorus of Philadelphia and painting.
+    </p>
+  </section>
+
+  <!-- <section id="research">
+    <h2>Research</h2>
+    <p class="muted" style="margin-bottom:26px;">
+      I organize my work around three ways multi-agent coordination breaks — and the
+      kind of guarantee each one demands.
+    </p>
+
+    <div class="modes">
+      <div class="mode">
+        <span class="idx">01 — MULTI-AGENT COORDINATION</span>
+        <div class="arc">Agents don't know the world <em>&rarr;</em> no-regret guarantees</div>
+        <p>Online learning and allocation algorithms whose regret is bounded even as
+        environments shift and the agent count grows. Includes ergodic coverage with
+        regret bounds and online resource allocation.</p>
+      </div>
+      <div class="mode">
+        <span class="idx">02 — SAFETY-CRITICALITY</span>
+        <div class="arc">Failure is unacceptable <em>&rarr;</em> safety guarantees</div>
+        <p>Planners that certify constraint satisfaction under uncertainty: conformal
+        prediction for calibrated uncertainty sets, and signal-temporal-logic planning
+        with signed distance fields.</p>
+      </div>
+      <div class="mode">
+        <span class="idx">03 — SELF-INTEREST</span>
+        <div class="arc">Agents are strategic <em>&rarr;</em> strategyproofness</div>
+        <p>Mechanism design that aligns incentives without sacrificing efficiency:
+        vertiport auctions and privacy-preserving airspace coordination.</p>
+      </div>
+    </div>
+
+    <p class="frontier">
+      <b>Open frontier.</b> Each guarantee is well understood in isolation. Composing
+      them across layers — learning, safety, and incentives at once, at scale — is the
+      direction my current work is pushing.
+    </p>
+  </section> -->
+
+  <section id="news">
+    <h2>News</h2>
+    <!-- EDIT: newest first. Upcoming talks live here too — date them and label "Upcoming talk". -->
+    <div class="news-item">
+      <span class="date">Nov 2026</span>
+      <span class="body"><b>Upcoming talk</b> — RGSO-CARS Seminar Series, University of Delaware.</span>
+    </div>
+    <div class="news-item">
+      <span class="date">July 2026</span>
+      <span class="body">"Time-To-Reach Separation and Safety Filtering for Safe, Fair, and Efficient Multi-Agent Coordination" accepted to CDC 2026!
+    </div>
+    <div class="news-item">
+      <span class="date">July 2026</span>
+      <span class="body">New preprint on "Resilient Decentralized Ergodic Coverage for Scalable Multi-Robot Systems in Unknown Time-Varying Environments" — <a href="https://arxiv.org/abs/2604.04280">arXiv</a>.</span>
+    </div>
+    <div class="news-item">
+      <span class="date">May 2026</span>
+      <span class="body">Invited speaker in the ACC 2026 <a href="https://sites.google.com/view/acc2026w05multiagentautonomy">Workshop on Autonomy in Transportation</a>.</span>
+    </div>
+    <div class="news-item">
+      <span class="date">May 2026</span>
+      <span class="body">New preprint on "Time-To-Reach Separation and Safety Filtering for Safe, Fair, and Efficient Multi-Agent Coordination" — <a href="https://arxiv.org/abs/2605.20625">arXiv</a>.</span>
+    </div>
+    <div class="news-item">
+      <span class="date">Aug 2025</span>
+      <span class="body"> Graduated from UC Berkeley! Starting a Postdoc at UPenn in October.</span>
+    </div>
+    <div class="news-item">
+      <span class="date">April 2025</span>
+      <span class="body">"Privacy-Preserving Mechanisms for Coordinating Airspace Usage in Advanced Air Mobility" accepted for publication in the Journal on Autonomous Transportation Systems [JATS]!</span>
+    </div>
+    <div class="news-item">
+      <span class="date">March 2025</span>
+      <span class="body">Invited speaker in the <a href="https://www.youtube.com/watch?v=mIy3q9C1WTc">Autonomy Talks Series</a>.</span>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <p class="note" style="margin-top:0">* denotes equal contribution.</p>
+
+    <h3 class="subhead">Under Review / Preprints</h3>
+
+    <div class="pub">
+      <p class="t">Resilient Decentralized Ergodic Coverage for Scalable Multi-Robot Systems in Unknown Time-Varying Environments<span class="tag">under review</span></p>
+      <p class="m">Maria G. Mendoza, <b>Victoria M. Tuck</b>, Chinmay Maheshwari, S. Shankar Sastry · <span class="venue">IEEE Robotics and Automation Letters (RA-L)</span> · 2026 · arXiv:2604.04280</p>
+    </div>
+
+    <h3 class="subhead">Peer-Reviewed Publications</h3>
+
+    <div class="pub">
+      <p class="t">Time-To-Reach Separation and Safety Filtering for Safe, Fair, and Efficient Multi-Agent Coordination</p>
+      <p class="m">Matthew Low, Jasmine J. Aloor, <b>Victoria M. Tuck</b>, Pierluigi Nuzzo, Jason J. Choi · <span class="venue">64th IEEE Conference on Decision and Control (CDC)</span> · 2026 (to appear) · arXiv:2605.20625</p>
+    </div>
+
+    <div class="pub">
+      <p class="t">Privacy-Preserving Mechanisms for Coordinating Airspace Usage in Advanced Air Mobility</p>
+      <p class="m">Chinmay Maheshwari*, Maria G. Mendoza*, <b>Victoria M. Tuck</b>*, Pan-Yang Su, Victor Qin, Hamsa Balakrishnan, S. Shankar Sastry · <span class="venue">ACM J. Auton. Transport. Syst. (JATS)</span> · 2025</p>
+    </div>
+
+    <div class="pub">
+      <p class="t">Incentive-Compatible Vertiport Reservation in Advanced Air Mobility: An Auction-Based Approach</p>
+      <p class="m">Pan-Yang Su*, Chinmay Maheshwari*, <b>Victoria M. Tuck</b>, S. Shankar Sastry · <span class="venue">63rd IEEE Conference on Decision and Control (CDC)</span> · 2024</p>
+    </div>
+
+    <div class="pub">
+      <p class="t">SMT-Based Dynamic Multi-Robot Task Allocation</p>
+      <p class="m"><b>Victoria M. Tuck</b>, Pei-Wei Chen, Georgios Fainekos, Bardh Hoxha, Hideki Okamoto, S. Shankar Sastry, Sanjit A. Seshia · <span class="venue">NASA Formal Methods Symposium (NFM)</span> · 2024</p>
+    </div>
+
+    <div class="pub">
+      <p class="t">DEC-LOS-RRT: Decentralized Path Planning for Multi-Robot Systems with Line-of-Sight Constrained Communication</p>
+      <p class="m"><b>Victoria M. Tuck</b>, Yash V. Pant, Sanjit A. Seshia, S. Shankar Sastry · <span class="venue">IEEE Conference on Control Technology and Applications (CCTA)</span> · 2021</p>
+    </div>
+
+  </section>
+
+  <!-- <section id="teaching">
+    <h2>Teaching</h2>
+
+    <h3 class="subhead">University of California, Berkeley</h3>
+    <div class="pub">
+      <p class="t">Embedded Systems (UG/Grad)</p>
+      <p class="m">Guest Lecturer · Fall 2023, 2024 / Graduate Student Instructor · Fall 2020, 2023</p>
+    </div>
+    <h3 class="subhead">Georgia Institute of Technology</h3>
+    <div class="pub">
+      <p class="t">Graduate Linear Controls (Grad)</p>
+      <p class="m">Teaching Assistant · Fall 2018</p>
+    </div>
+    <div class="pub">
+      <p class="t">Undergraduate Microelectronics Lab (UG)</p>
+      <p class="m">Teaching Assistant · Spring 2018</p>
+    </div>
+    <div class="pub">
+      <p class="t">MATLAB for Engineers (UG)</p>
+      <p class="m">Senior Teaching Assistant · 2017 / Teaching Assistant · 2014&ndash;2017</p>
+    </div>
+
+  </section>
+
+  <section id="outreach">
+    <h2>Outreach</h2>
+    <!-- EDIT: guest lectures, TA roles, mentoring. Delete rows you don't need. -->
+    <!-- <div class="pub">
+      <p class="t">ELENG C249A - Introduction to Embedded Systems [UC Berkeley]</p>
+      <p class="m">Guest Lecturer [Fall 2023, 2024] / Teaching Assistant · [Fall 2020, 2023]</p>
+    </div>
+    <div class="pub">
+      <p class="t">Mentoring</p>
+      <p class="m">[N] undergraduate / graduate students · [Years]</p>
+    </div>
+  </section> -->
+
+  <section id="teaching">
+    <h2>Teaching</h2>
+
+    <div class="course">
+      <p class="chead"><b>Embedded Systems</b> (UG/Grad), UC Berkeley</p>
+      <div class="prow"><span class="pos">Guest Lecturer</span><span class="yr">Fall 2023, 2024</span></div>
+      <div class="prow"><span class="pos">Graduate Student Instructor</span><span class="yr">Fall 2020, 2023</span></div>
+    </div>
+
+    <div class="course">
+      <p class="chead"><b>Graduate Linear Controls</b> (Grad), Georgia Tech</p>
+      <div class="prow"><span class="pos">Teaching Assistant</span><span class="yr">Fall 2018</span></div>
+    </div>
+
+    <div class="course">
+      <p class="chead"><b>Undergraduate Microelectronics Lab</b> (UG), Georgia Tech</p>
+      <div class="prow"><span class="pos">Teaching Assistant</span><span class="yr">Spring 2018</span></div>
+    </div>
+
+    <div class="course">
+      <p class="chead"><b>MATLAB for Engineers</b> (UG), Georgia Tech</p>
+      <div class="prow"><span class="pos">Teaching Assistant</span><span class="yr">2014&ndash;2017</span></div>
+    </div>
+
+    <!-- <div class="course">
+      <p class="chead"><b>Research Mentoring</b></p>
+      <div class="prow"><span class="pos">Maria G. Mendoza (UC Berkeley)</span><span class="yr">2023&ndash;present</span></div>
+      <div class="prow"><span class="pos">Danil Kuznetsov (UCLA)</span><span class="yr">2024</span></div>
+    </div> -->
+  </section>
+
+  <section id="outreach">
+    <h2>Outreach</h2>
+    <div class="rows">
+      <div class="row">
+        <span class="role"><b>Bay Area Scientists in Schools</b> (BASIS) &mdash; Facilitator</span>
+        <span class="yr">2019&ndash;2025</span>
+      </div>
+      <div class="row">
+        <span class="role"><b>Girl Scouts Engineering Day</b> (Berkeley WiCSE) &mdash; Organizer</span>
+        <span class="yr">2021&ndash;2023</span>
+      </div>
+      <div class="row">
+        <span class="role"><b>Berkeley WiCSE</b> &mdash; Outreach Chair</span>
+        <span class="yr">2020&ndash;2023</span>
+      </div>
+      <div class="row">
+        <span class="role"><b>Transfer to Excellence</b> (TTE) &mdash; Research mentor for under-represented &amp; first-generation students intending to transfer to UC Berkeley</span>
+        <span class="yr">2023</span>
+      </div>
+      <div class="row">
+        <span class="role"><b>Be A Scientist</b> &mdash; Mentor</span>
+        <span class="yr">2021</span>
+      </div>
+      <div class="row">
+        <span class="role"><b>Expand Your Horizons</b> &mdash; Workshop Leader</span>
+        <span class="yr">2019&ndash;2020</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <!-- EDIT -->
+    Victoria Tuck · vtuck@engineering.upenn.edu · updated <span class="mono">2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
